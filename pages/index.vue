@@ -28,9 +28,19 @@
 
 
 
-<script>
+<script setup>
+import { useCounterStore } from '@/stores/counter'
 export default {
-  name: "index.vue"
+  name: "index.vue",
+  setup() {
+    const counter = useCounterStore()
+
+    counter.count++
+    // with autocompletion ✨
+    counter.$patch({ count: counter.count + 1 })
+    // or using an action instead
+    counter.increment()
+  },
 }
 </script>
 
